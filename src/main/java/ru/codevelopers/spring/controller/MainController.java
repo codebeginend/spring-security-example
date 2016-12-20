@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
+
 /**
  * Created by zaur on 20.12.16.
  */
@@ -36,6 +38,19 @@ public class MainController {
 
         model.setViewName("login");
 
+        return model;
+
+    }
+
+    @RequestMapping(value = "/errorr", method = RequestMethod.GET)
+    public ModelAndView getError(Principal user){
+        ModelAndView model = new ModelAndView();
+        if(user!=null){
+            model.addObject("errorMsg", user.getName() + " у вас нет доступа к странице");
+        }else {
+            model.addObject("errorMsg", "у вас нет доступа к странице");
+        }
+        model.setViewName("errorr");
         return model;
 
     }

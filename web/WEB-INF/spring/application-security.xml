@@ -9,10 +9,11 @@
 	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
 
-    <http use-expressions="true">
+    <http auto-config="true">
+        <access-denied-handler error-page="/errorr"/>
 
-        <intercept-url pattern="/user" access="isAuthenticated()" />
-        <intercept-url pattern="/admin" access="isAuthenticated()" />
+        <intercept-url pattern="/user" access="ROLE_USER" />
+        <intercept-url pattern="/admin" access="ROLE_ADMIN" />
 
         <form-login login-page='/login'
                     default-target-url="/user"
@@ -30,9 +31,19 @@
         <authentication-provider>
             <user-service>
                 <user name="user" password="user" authorities="ROLE_USER" />
+                <user name="admin" password="admin" authorities="ROLE_ADMIN" />
             </user-service>
         </authentication-provider>
     </authentication-manager>
 
-
+    <beans:bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">
+        <beans:property name="accessDeniedHandler" ref="accessDeniedHandler"/>
+        <beans:property name="authenticationEntryPoint" ref="authenticationEntryPoint"/>
+    </beans:bean>
+    <beans:bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <beans:property name="loginFormUrl" value="/login"/>
+    </beans:bean>
+    <beans:bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+        <beans:property name="errorPage" value="/error"/>
+    </beans:bean>
 </beans:beans>
