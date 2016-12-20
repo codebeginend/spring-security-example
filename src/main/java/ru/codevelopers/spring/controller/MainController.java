@@ -1,5 +1,7 @@
 package ru.codevelopers.spring.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,9 +46,10 @@ public class MainController {
 
     @RequestMapping(value = "/errorr", method = RequestMethod.GET)
     public ModelAndView getError(Principal user){
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ModelAndView model = new ModelAndView();
         if(user!=null){
-            model.addObject("errorMsg", user.getName() + " у вас нет доступа к странице");
+            model.addObject("errorMsg",userDetails.getAuthorities() + " " + userDetails.getUsername() + " у вас нет доступа к странице");
         }else {
             model.addObject("errorMsg", "у вас нет доступа к странице");
         }

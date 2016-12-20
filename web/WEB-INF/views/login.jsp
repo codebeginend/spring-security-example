@@ -42,6 +42,15 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="password_safe"> Сохранить пароль
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
 						<button name="submit" type="submit" class="btn btn-default btn-sm">Войти</button>
 					</div>
 				</div>
