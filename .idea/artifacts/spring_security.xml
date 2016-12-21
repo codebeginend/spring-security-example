@@ -20,6 +20,9 @@
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:3.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.2.0.RELEASE" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:3.2.15.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:3.2.15.RELEASE" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.38" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="spring-security/web/Web" />
